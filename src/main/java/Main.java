@@ -1,5 +1,3 @@
-package com.philippmeyer.factory;
-
 import java.sql.*;
 
 public class Main {
@@ -12,11 +10,6 @@ public class Main {
         if (jdbcUrl == null || db_username == null || password == null) {
             System.err.println("Fehler: Eine oder mehrere Umgebungsvariablen (JDBC_URL, USERNAME, PASSWORD) sind nicht gesetzt.");
             return; // Beende das Programm, wenn die Variablen fehlen
-        }
-        else {
-            System.out.println("JDBC_URL: " + jdbcUrl);
-            System.out.println("DB_USERNAME: " + db_username);
-            System.out.println("PASSWORD: " + password);
         }
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, db_username, password)) {
