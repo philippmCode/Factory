@@ -1,0 +1,366 @@
+/* Globale Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0; /* Stellt sicher, dass keine Standardränder vorhanden sind */
+    background-color: #ffffff;
+}
+
+/* Standard React App Styles (unverändert beibehalten, falls sie noch relevant sind) */
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Recharts Tooltip Styling (unverändert beibehalten) */
+.recharts-tooltip-wrapper {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hauptcontainer der Anwendung mit 3x3 Grid */
+.app-container {
+    display: grid;
+    grid-template-columns: 10vw 1fr 1fr; /* Drei gleich große Spalten */
+    grid-template-rows: repeat(3, auto); /* Drei Reihen mit dynamischer Höhe */
+    width: 100%;
+    margin: auto; /* Zentriert das Grid */
+}
+
+/* Wrapper für den Hauptinhalt, platziert in der mittleren Zelle (2. Spalte, 2. Reihe) */
+.main-content-wrapper {
+    grid-row: 2;
+    grid-column: 2;
+    display: flex; /* Beibehaltung des Flexbox-Layouts für den Inhalt innerhalb dieser Zelle */
+    flex-direction: column;
+    align-items: flex-start; /* Richtet Elemente am Start der Querachse aus (links für column-Layout) */
+    /* padding wurde direkt über CSS-Klassen ersetzt */
+}
+
+/* Farben und Ränder für die einzelnen Grid-Zellen */
+.grid-cell-1 { /* Korrektur: Punkt für Klasse hinzugefügt */
+    grid-row: 1;
+    grid-column: 1;
+    background-color: #ffffff;
+}
+
+.grid-cell-2 {
+    grid-row: 1;
+    grid-column: 2;
+    background-color: #ffffff;
+}
+
+.grid-cell-3 {
+    grid-row: 1;
+    grid-column: 3;
+    background-color: #ffffff;
+    width: 30vw;
+}
+
+.grid-cell-4 {
+    grid-row: 2;
+    grid-column: 1;
+    background-color: #ffffff;
+}
+
+.grid-cell-5 {
+    align-content: start; /* Immer noch für Grid/Flex Container, wenn diese Zelle selbst ein Container wäre */
+    text-align: left; /* Richtet Inline-Inhalte wie Text in dieser Zelle links aus */
+    background-color: #ffffff;
+    width: 70vw;
+}
+
+.grid-cell-6 { background-color: #ffffff;}
+.grid-cell-7 { background-color: #ffffff;}
+.grid-cell-8 { background-color: #ffffff;}
+.grid-cell-9 { background-color: #ffffff;}
+
+/* Chart Styling */
+.chart {
+    background-color: white;
+    width: 70%;
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* NEUE CSS-Regeln zur Ersetzung der Tailwind-Klassen */
+.header-title {
+    font-size: 1.875rem; /* Entspricht text-3xl */
+    font-weight: bold;    /* Entspricht font-bold */
+    margin-bottom: 1.5rem; /* Entspricht mb-6 */
+    color: #1f2937; /* Entspricht text-gray-900 */
+}
+
+.dropdown-container {
+    margin-bottom: 1rem; /* Entspricht mb-4 */
+    display: flex;
+    align-items: center; /* Entspricht items-center */
+    gap: 0.5rem; /* Entspricht space-x-2 */
+}
+
+.filter-dropdown-container {
+    margin-bottom: 2rem; /* Entspricht mb-8 */
+    display: flex;
+    align-items: center; /* Entspricht items-center */
+    gap: 0.5rem; /* Entspricht space-x-2 */
+}
+
+.dropdown-label {
+    font-size: 1.125rem; /* Entspricht text-lg */
+    font-weight: 500;    /* Entspricht font-medium */
+    color: #4b5563;     /* Entspricht text-gray-700 */
+}
+
+.dropdown-select {
+    padding: 0.5rem; /* Entspricht p-2 */
+    border: 1px solid #d1d5db; /* Entspricht border border-gray-300 */
+    border-radius: 0.375rem; /* Entspricht rounded-md */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Entspricht shadow-sm */
+    outline: none; /* Entspricht focus:outline-none */
+}
+
+.dropdown-select:focus {
+    border-color: #3b82f6; /* Entspricht focus:ring-blue-500 für den Rand */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Entspricht focus:ring-2 mit transparentem Rand */
+}
+
+.chart-bar-clickable {
+    cursor: pointer;
+    /* Recharts Bars sind SVG-Elemente, deren Farbe oft direkt über Attribute gesetzt wird.
+       Ein einfacher CSS-Hover-Effekt wie bei Tailwind (hover:fill-blue-700) ist hier schwer umzusetzen,
+       da die 'fill'-Eigenschaft im SVG-Attribut Vorrang hat.
+       Eine JS-Lösung mit onMouseOver/onMouseLeave auf der Bar-Komponente wäre robuster.
+       Der 'cursor: pointer' ist jedoch über CSS sichergestellt. */
+}
+
+/* Optional: Versuch, den Hover-Effekt für Recharts-Balken über CSS zu simulieren.
+   Dies ist nicht immer zuverlässig, da Recharts die Füllfarbe oft direkt im SVG setzt. */
+.recharts-bar-clickable .recharts-rectangle:hover {
+    fill: #1d4ed8 !important; /* Ein dunklerer Blauton, ähnlich Tailwind blue-700. !important könnte nötig sein. */
+}
+
+/* ... (existing CSS) ... */
+
+/* Modal Overlay Styles */
+.modal-overlay {
+    position: fixed; /* Fixiert über dem gesamten Viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparenter Hintergrund */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Stellt sicher, dass es über allem anderen liegt */
+}
+
+/* Modal Content Styles */
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 600px; /* Maximale Breite des Dialogs */
+    width: 90%; /* Anpassbare Breite */
+    max-height: 90vh; /* Maximale Höhe des Dialogs */
+    overflow-y: auto; /* Scrollbar, wenn Inhalt zu lang ist */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Abstand zwischen den Elementen im Dialog */
+}
+
+.modal-content .dialog-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-content .dialog-text {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.modal-content .dialog-text strong {
+    color: #333;
+}
+
+.modal-content .dialog-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.modal-content .dialog-close-button:hover {
+    color: #333;
+}
+
+/* iframe styling within the modal */
+.modal-content .embedded-iframe {
+    border-radius: 8px; /* Rounded corners for the iframe */
+    margin-top: 20px; /* Space above the iframe */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Animation for the modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-overlay {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ... (bestehende CSS-Regeln) ... */
+
+/* Zusätzliche Stile für das "Neuen Filter erstellen"-Modal */
+.add-filter-modal {
+    max-width: 500px; /* Etwas schmaler als das Detail-Modal */
+}
+
+.add-filter-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.add-filter-modal .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.add-filter-modal .text-input {
+    width: calc(100% - 20px); /* Berücksichtigt Padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.add-filter-modal .category-selection-container {
+    display: flex;
+    flex-wrap: wrap; /* Kategorien brechen in neue Zeile um */
+    gap: 10px; /* Abstand zwischen den Checkboxen */
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-height: 200px; /* Max. Höhe, damit es scrollbar wird */
+    overflow-y: auto; /* Scrollbar, wenn viele Kategorien */
+}
+
+.add-filter-modal .category-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #e0f2f7; /* Leichter Hintergrund für jede Kategorie */
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid #b3e5fc;
+}
+
+.add-filter-modal .category-checkbox input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2); /* Checkbox etwas größer machen */
+}
+
+.add-filter-modal .category-checkbox label {
+    margin-bottom: 0; /* Überschreibt das 'display: block' von .form-group label */
+    font-weight: 400; /* Normaler Font-Gewicht */
+    color: #444;
+    cursor: pointer;
+}
+
+.add-filter-modal .modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Buttons rechts ausrichten */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.add-filter-modal .button-primary {
+    background-color: #60a5fa; /* Blau */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.add-filter-modal .button-primary:hover {
+    background-color: #3b82f6; /* Dunkleres Blau */
+}
+
+.add-filter-modal .button-secondary {
+    background-color: #e0e0e0; /* Grau */
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.add-filter-modal .button-secondary:hover {
+    background-color: #c7c7c7; /* Dunkleres Grau */
+}
