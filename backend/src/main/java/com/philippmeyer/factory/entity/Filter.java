@@ -26,34 +26,12 @@ public class Filter {
     )
     private Set<Merkmalskategorie> merkmalskategorien = new HashSet<>();
 
-    // NEU: Transient-Feld, um die IDs vom Frontend zu empfangen.
-    // Dies ist KEIN Persistenz-Feld und wird nicht in der Datenbank gespeichert.
+    // the ID's of the merkmalskategorien that are selected for the filter in the frontend
     @Transient
     private List<Long> merkmalskategorieIds;
 
-    // Konstruktoren
+    // Constructor
     public Filter() {
-    }
-
-    public Filter(String name) {
-        this.name = name;
-    }
-
-    // Getter und Setter
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Set<Merkmalskategorie> getMerkmalskategorien() {
@@ -63,8 +41,7 @@ public class Filter {
     public void setMerkmalskategorien(Set<Merkmalskategorie> merkmalskategorien) {
         this.merkmalskategorien = merkmalskategorien;
     }
-
-    // Getter und Setter für das Transient-Feld
+    
     public List<Long> getMerkmalskategorieIds() {
         if (merkmalskategorieIds == null) {
             merkmalskategorieIds = new ArrayList<>();
@@ -76,8 +53,4 @@ public class Filter {
         this.merkmalskategorieIds = merkmalskategorieIds;
     }
 
-    // Hilfsmethode zum Hinzufügen einer einzelnen Kategorie (optional)
-    public void addMerkmalskategorie(Merkmalskategorie kategorie) {
-        this.merkmalskategorien.add(kategorie);
-    }
 }

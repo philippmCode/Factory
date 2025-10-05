@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface FilterRepository extends JpaRepository<Filter, Long> {
 
-    // Methode zum Abrufen der Daten aus der Materialized View
     @Query(value = "SELECT s.ID, s.NAME FROM FILTER s", nativeQuery = true)
     List<Filter> findAll();
 }

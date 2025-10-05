@@ -16,29 +16,25 @@ public class FilterController {
         this.service = service;
     }
 
+    /**
+     * GET /filter
+     * Retrieves all Filter entities.
+     * @return A list of all available filters.
+     */
     @GetMapping
     public List<Filter> getAll() {
         return service.findAll();
     }
 
     /**
-     @GetMapping("/{id}")
-     public Optional<Filter> getById(@PathVariable int id) {
-     return service.findById(id);
-     }
-     **/
-
-
-     @PostMapping
-     public Filter create(@RequestBody Filter filter) {
-     return service.save(filter);
-     }
-
-    /**
-     @DeleteMapping("/{id}")
-     public void delete(@PathVariable int id) {
-     service.deleteById(id);
-     }
-     **/
+     * POST /filter
+     * Creates a new Filter or updates an existing one.
+     * @param filter The Filter object to be saved (contains transient category IDs).
+     * @return The newly created or updated Filter entity.
+     */
+    @PostMapping
+    public Filter create(@RequestBody Filter filter) {
+        return service.save(filter);
+    }
 }
 
