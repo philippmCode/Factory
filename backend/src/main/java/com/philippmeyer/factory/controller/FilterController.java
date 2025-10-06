@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST Controller responsible for handling web requests related to the Filter entity.
+ * It exposes API endpoints for retrieving filter data.
+ */
 @RestController
 @RequestMapping("/filter")
 public class FilterController {
